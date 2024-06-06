@@ -15,7 +15,9 @@ export function MainHeader() {
   return (
     <nav className="flex items-center justify-between w-8/12 m-auto mt-4">
       <div className=" w-28 h-28">
-        <img src={logoImg.src} />
+        <Link href={"/"}>
+          <img src={logoImg.src} />
+        </Link>
       </div>
       <NavigationMenu>
         <NavigationMenuList>
