@@ -11,9 +11,9 @@ export default function Home() {
         <div className="md:w-7/12 mt-8 md:mt-0 md:pl-8">
           <h1 className="text-4xl font-bold text-primary">Quick Food</h1>
           <p className="mt-4 text-gray-600">
-            Experience the delight of fresh and fast meals delivered straight to
-            your door. At Quick Food, we bring the best of gourmet cooking right
-            to your fingertips, ensuring every meal is a culinary adventure.
+            Discover and share delightful recipes from around the world. At
+            Quick Food, we bring together food enthusiasts to share their
+            culinary creations and explore new dishes.
           </p>
           <div className="mt-6 space-x-4 flex justify-end items-center gap-4">
             <Link href={"/community"} legacyBehavior>
@@ -31,81 +31,46 @@ export default function Home() {
         </div>
       </header>
 
-      {/* About the Company Section */}
-      <main className={"w-6/12 pb-24 m-auto"}>
-        <section className="p-8 ">
-          <h2 className="text-3xl font-bold text-primary/90 text-center">
-            About the Company
-          </h2>
-          <p className="mt-4 text-gray-600">
-            At Quick Food, we are passionate about delivering exceptional dining
-            experiences right to your home. Founded with the mission to make
-            gourmet food accessible to everyone, we combine quality ingredients
-            with innovative cooking techniques to create meals that are not only
-            delicious but also convenient. Whether you’re craving a quick snack
-            or a full-course meal, Quick Food is here to satisfy your culinary
-            desires.
-          </p>
-        </section>
+      {/* Main Content */}
+      <main className="w-8/12 pb-24 m-auto px-8 md:px-0">
+        <section className="grid md:grid-cols-3 md:grid-rows-2 gap-8">
+          {/* About the Company Section */}
+          <div className="md:col-span-2 md:row-span-1 bg-primary text-white p-8 rounded-lg shadow-lg">
+            <h2 className="text-3xl font-bold text-center">About Quick Food</h2>
+            <p className="mt-4">
+              At Quick Food, we are passionate about creating a community where
+              food enthusiasts can share their favorite recipes and discover new
+              culinary delights. Founded with the mission to connect people
+              through the love of cooking, we offer a platform for sharing
+              unique recipes, exchanging cooking tips, and inspiring each other
+              to try new dishes. Whether you're a seasoned chef or a home cook,
+              Quick Food is here to enhance your culinary journey.
+            </p>
+          </div>
 
-        {/* Why You Should Prefer Quick Food Section */}
-        <section className="p-8">
-          <h2 className="text-3xl font-bold text-primary/90 text-center">
-            Why You Should Prefer Quick Food
-          </h2>
-          <ul className="mt-4 space-y-4 text-gray-600">
-            <li>
-              <strong>Fresh Ingredients, Gourmet Taste</strong>
-              <ul className="mt-2 space-y-2">
-                <li>
-                  <strong>Quality:</strong> We source the freshest ingredients
-                  to ensure every bite is packed with flavor and nutrition.
-                </li>
-                <li>
-                  <strong>Convenience:</strong> Enjoy restaurant-quality meals
-                  without leaving the comfort of your home.
-                </li>
-                <li>
-                  <strong>Variety:</strong> Our diverse menu caters to all
-                  tastes and dietary preferences, from vegan delights to hearty
-                  classics.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Customer-Centric Service</strong>
-              <ul className="mt-2 space-y-2">
-                <li>
-                  <strong>Fast Delivery:</strong> Get your favorite dishes
-                  delivered quickly, ensuring they arrive hot and ready to
-                  enjoy.
-                </li>
-                <li>
-                  <strong>Easy Ordering:</strong> Our user-friendly website and
-                  app make ordering your next meal a breeze.
-                </li>
-                <li>
-                  <strong>Satisfaction Guaranteed:</strong> We are committed to
-                  providing an exceptional experience with every order. Your
-                  satisfaction is our top priority.
-                </li>
-              </ul>
-            </li>
-          </ul>
+          {/* Why You Should Prefer Quick Food Section */}
+          <div className="md:col-span-1 md:row-span-2 flex flex-col gap-8">
+            <div className="bg-secondary text-white p-8 rounded-lg shadow-lg h-full">
+              <h2 className="text-xl font-bold text-center">Why Quick Food?</h2>
+              <p className="mt-4">
+                Explore a world of recipes. From traditional dishes to modern
+                cuisine, find recipes from all corners of the globe. Connect
+                with fellow food lovers and get inspired to try new dishes.
+              </p>
+            </div>
+            <div className="bg-secondary-foreground/80 p-8 text-white rounded-lg shadow-md h-full">
+              <h2 className="text-xl font-bold text-center">
+                Easy and Fun to Use
+              </h2>
+              <p className="mt-4">
+                Our platform is designed to make sharing and discovering recipes
+                a breeze. Save your favorite recipes, follow other users, and
+                get personalized recommendations.
+              </p>
+            </div>
+          </div>
         </section>
       </main>
-
-      {/* <div className=" mt-24">
-        <div className="text-6xl">Hello to Food App!</div>
-        <div className="mt-8 text-2xl flex flex-col items-center">
-          <Link href={"/meals"} className="text-amber-400/80 underline mb-3">
-            Meals
-          </Link>
-          <Link href={"/community"} className="text-amber-400/80 underline">
-            Community
-          </Link>
-        </div>
-      </div> */}
     </>
   );
 }

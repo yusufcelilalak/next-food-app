@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import firstFoodImg from "@/app/assets/food-1.jpg";
-import secondFoodImg from "@/app/assets/food-2.jpg";
-import thirdFoodImg from "@/app/assets/food-3.jpg";
-import fourthFoodImg from "@/app/assets/food-4.jpg";
-import fifthFoodImg from "@/app/assets/food-5.jpg";
+import firstFoodImg from "@/assets/food-1.jpg";
+import secondFoodImg from "@/assets/food-2.jpg";
+import thirdFoodImg from "@/assets/food-3.jpg";
+import fourthFoodImg from "@/assets/food-4.jpg";
+import fifthFoodImg from "@/assets/food-5.jpg";
 
 const images = [
   { image: firstFoodImg, alt: "" },
