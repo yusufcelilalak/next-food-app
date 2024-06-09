@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: #f5deb3;
+    --background: 90, 23%, 82%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,11 +13,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 0, 72%, 59%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 24, 85%, 67%;
+    --secondary-foreground: 6, 88%, 65%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -71,20 +71,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background/45 text-foreground;
   }
 }
-
-/* main,
-nav {
-  @apply max-w-6xl mx-auto my-12;
-}
-p {
-  @apply mt-2;
-}
-h1 {
-  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
-}
-h2 {
-  @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
-} */

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Meals() {
   return (
-    <main className="flex flex-col items-center h-screen w-screen">
+    <main className="flex flex-col items-center h-full w-full">
       <div className=" mt-24">
         <div className="text-6xl">Meals</div>
         <div className="mt-8 text-2xl flex flex-col items-center">
