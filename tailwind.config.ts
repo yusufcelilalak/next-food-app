@@ -71,10 +71,19 @@ const config = {
           "0%, 100%": { transform: "scale(1)", opacity: "1" },
           "50%": { transform: "scale(1.05)", opacity: "1" },
         },
+        "loading-text": {
+          from: {
+            color: "hsl(var(--primary))",
+          },
+          to: {
+            color: "hsl(var(--secondary))",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "loading-text": "loading-text 2s linear infinite",
         zoomInOut: "zoomInOut 3s ease-in-out infinite",
       },
     },

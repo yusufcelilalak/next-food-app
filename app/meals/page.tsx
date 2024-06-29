@@ -1,10 +1,14 @@
 import MealsGrid from "@/components/meals/meals-grid";
 import { getMeals } from "@/lib/meals";
 import Link from "next/link";
+import { Suspense } from "react";
 
-export default async function Meals() {
+async function Meals() {
   const meals: MealItem[] = await getMeals();
+  return <MealsGrid mealItems={meals} />;
+}
 
+export default function MealsPage() {
   return (
     <div className="flex flex-col items-center h-full w-full">
       <header className="w-9/12 py-24 px-8 flex flex-col items-start text-left">
@@ -23,7 +27,18 @@ export default async function Meals() {
         </Link>
       </header>
       <main className="mt-12 w-full px-8 flex items-center justify-center">
-        <MealsGrid mealItems={meals} />
+        <Suspense
+          fallback={
+            <div className=" flex gap-2 items-center">
+              <div className="w-4 h-4 border-2 border-primary/70 border-t-transparent rounded-full animate-spin"></div>
+              <p className=" text-center animate-loading-text">
+                Fetching meals...
+              </p>
+            </div>
+          }
+        >
+          <Meals />
+        </Suspense>
       </main>
     </div>
   );
