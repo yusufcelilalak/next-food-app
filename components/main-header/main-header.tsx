@@ -5,7 +5,7 @@ import NavLink from "./nav-link";
 
 export function MainHeader() {
   return (
-    <nav className="flex items-center justify-between w-8/12 m-auto mt-4">
+    <nav className="flex items-center justify-between w-9/12 m-auto mt-4">
       <div className=" w-28 h-28">
         <Link href={"/"}>
           <Image src={logoImg} alt={"store-logo"} priority />

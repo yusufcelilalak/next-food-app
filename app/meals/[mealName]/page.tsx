@@ -1,5 +1,6 @@
 import { getMeal } from "@/lib/meals";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 type Params = { mealName: string };
 
@@ -7,6 +8,11 @@ type MealParams = { params: Params };
 
 export default function Meal({ params }: MealParams) {
   const meal = getMeal(params.mealName);
+
+  if (!meal) {
+    notFound();
+  }
+
   return (
     <>
       <header className=" mt-28 mx-auto w-9/12">
