@@ -16,6 +16,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import ImagePicker from "@/components/ui/image-picker";
+
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -33,6 +37,22 @@ const formSchema = z.object({
   instructions: z.string().min(1, {
     message: "Instructions is required",
   }),
+  image: z
+    .any()
+    .refine(
+      (files) => {
+        console.log(files[0], "heeey");
+        debugger;
+        return files?.length >= 1;
+      },
+      { message: "Image is required." }
+    )
+    .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
+      message: "Only .jpg, .jpeg, and .png files are accepted.",
+    })
+    .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
+      message: `Max file size is 5MB.`,
+    }),
 });
 
 export default function Share() {
@@ -44,15 +64,19 @@ export default function Share() {
       title: "",
       summary: "",
       instructions: "",
+      image: [],
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
+    debugger;
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  debugger;
 
   return (
     <div className="flex flex-col items-center h-full w-full">
@@ -132,6 +156,19 @@ export default function Share() {
                   <FormLabel>Instructions</FormLabel>
                   <FormControl>
                     <Textarea className="resize-none h-48" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Picture</FormLabel>
+                  <FormControl>
+                    <ImagePicker {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
