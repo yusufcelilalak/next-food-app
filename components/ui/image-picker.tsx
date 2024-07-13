@@ -7,10 +7,11 @@ import React, {
   forwardRef,
 } from "react";
 import { FolderPlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 interface ImagePickerProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onChange?: (
-    files: FileList | File | null | React.ChangeEvent<HTMLInputElement>
+    files: File | null | undefined | React.ChangeEvent<HTMLInputElement>
   ) => void;
 }
 
@@ -27,7 +28,7 @@ const ImagePicker = forwardRef<HTMLInputElement, ImagePickerProps>(
         const reader = new FileReader();
         reader.onloadend = () => {
           setSelectedImage(reader.result as string);
-          props.onChange?.(event.target.files);
+          props.onChange?.(file);
         };
         reader.readAsDataURL(file);
       }
@@ -43,12 +44,21 @@ const ImagePicker = forwardRef<HTMLInputElement, ImagePickerProps>(
 
     return (
       <div className="relative w-32 h-32 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+        <input
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleImageChange}
+          ref={inputRef}
+          name={props.name}
+        />
         {selectedImage ? (
           <>
-            <img
+            <Image
               src={selectedImage}
               alt="Selected"
               className="w-full h-full object-cover rounded-lg"
+              fill
             />
             <button
               type="button"
@@ -59,17 +69,12 @@ const ImagePicker = forwardRef<HTMLInputElement, ImagePickerProps>(
             </button>
           </>
         ) : (
-          <label className="flex flex-col items-center cursor-pointer">
-            <FolderPlusIcon className="h-8 w-8 text-gray-500" />
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleImageChange}
-              ref={inputRef}
-              name={props.name}
+          <div className="flex flex-col items-center cursor-pointer">
+            <FolderPlusIcon
+              className="h-8 w-8 text-gray-500"
+              onClick={() => inputRef.current?.click()}
             />
-          </label>
+          </div>
         )}
       </div>
     );

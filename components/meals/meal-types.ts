@@ -9,7 +9,7 @@ type MealItem = {
 type Meal = {
   slug: string;
   title: string;
-  image: string;
+  image: File & string;
   summary: string;
   instructions: string;
   creator: string;

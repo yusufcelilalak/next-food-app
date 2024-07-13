@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,66 +16,35 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImagePicker from "@/components/ui/image-picker";
-
-const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
-
-const formSchema = z.object({
-  username: z.string().min(1, {
-    message: "Name is required",
-  }),
-  email: z.string().email({
-    message: "Invalid email address",
-  }),
-  title: z.string().min(1, {
-    message: "Title is required",
-  }),
-  summary: z.string().min(1, {
-    message: "Summary is required",
-  }),
-  instructions: z.string().min(1, {
-    message: "Instructions is required",
-  }),
-  image: z
-    .any()
-    .refine(
-      (files) => {
-        console.log(files[0], "heeey");
-        debugger;
-        return files?.length >= 1;
-      },
-      { message: "Image is required." }
-    )
-    .refine((files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type), {
-      message: "Only .jpg, .jpeg, and .png files are accepted.",
-    })
-    .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, {
-      message: `Max file size is 5MB.`,
-    }),
-});
+import FormDataSchema from "@/schemas/form-data-schema";
+import { shareMeal } from "@/lib/actions";
 
 export default function Share() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof FormDataSchema>>({
+    resolver: zodResolver(FormDataSchema),
     defaultValues: {
-      username: "",
-      email: "",
+      creator: "",
+      creator_email: "",
       title: "",
       summary: "",
       instructions: "",
-      image: [],
+      image: null,
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    debugger;
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
+  // async function shareMeal(mealForm: any) {
+  //   "use server";
 
-  debugger;
+  //   console.log(mealForm);
+  // }
+
+  async function onSubmit(values: z.infer<typeof FormDataSchema>, e: any) {
+    const formData = new FormData(e.target);
+    const { image, ...mainForm } = values;
+
+    const result = await shareMeal(mainForm, formData);
+    console.log(result, "result");
+  }
 
   return (
     <div className="flex flex-col items-center h-full w-full">
@@ -91,13 +59,14 @@ export default function Share() {
       <main className="mt-12 w-9/12 px-8 flex mb-24">
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit((data, e) => onSubmit(data, e))}
+            // action={shareMeal}
             className="space-y-8 w-8/12 "
           >
             <div className=" flex w-full gap-6">
               <FormField
                 control={form.control}
-                name="username"
+                name="creator"
                 render={({ field }) => (
                   <FormItem className=" basis-1/2">
                     <FormLabel>Username</FormLabel>
@@ -110,7 +79,7 @@ export default function Share() {
               />
               <FormField
                 control={form.control}
-                name="email"
+                name="creator_email"
                 render={({ field }) => (
                   <FormItem className=" basis-1/2">
                     <FormLabel>Email</FormLabel>

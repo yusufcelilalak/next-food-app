@@ -21,7 +21,7 @@ export default function MealItem({
         <Image
           src={image}
           alt={title}
-          className="w-full h-80 object-cover rounded-t-md"
+          className="w-full h-full object-cover rounded-t-md"
           fill
         />
       </CardHeader>
