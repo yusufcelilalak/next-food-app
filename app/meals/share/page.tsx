@@ -32,12 +32,6 @@ export default function Share() {
     },
   });
 
-  // async function shareMeal(mealForm: any) {
-  //   "use server";
-
-  //   console.log(mealForm);
-  // }
-
   async function onSubmit(values: z.infer<typeof FormDataSchema>, e: any) {
     const formData = new FormData(e.target);
     const { image, ...mainForm } = values;
@@ -145,10 +139,18 @@ export default function Share() {
             />
             <div className="text-right">
               <Button
+                disabled={form.formState.isSubmitting}
                 type="submit"
                 className=" text-right bg-gradient-to-r from-primary/90 to-secondary/90 text-white font-semibold text-lg md:text-xl px-6 py-3 rounded-lg shadow-md transition duration-500 ease-in-out transform hover:scale-105"
               >
-                Share Meal
+                {form.formState.isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 mr-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  "Share Meal"
+                )}
               </Button>
             </div>
           </form>
