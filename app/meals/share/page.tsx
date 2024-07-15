@@ -18,6 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import ImagePicker from "@/components/ui/image-picker";
 import FormDataSchema from "@/schemas/form-data-schema";
 import { shareMeal } from "@/lib/actions";
+import { useFormState } from "react-dom";
 
 export default function Share() {
   const form = useForm<z.infer<typeof FormDataSchema>>({
@@ -36,8 +37,7 @@ export default function Share() {
     const formData = new FormData(e.target);
     const { image, ...mainForm } = values;
 
-    const result = await shareMeal(mainForm, formData);
-    console.log(result, "result");
+    await shareMeal(mainForm, formData);
   }
 
   return (
@@ -54,7 +54,6 @@ export default function Share() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit((data, e) => onSubmit(data, e))}
-            // action={shareMeal}
             className="space-y-8 w-8/12 "
           >
             <div className=" flex w-full gap-6">
