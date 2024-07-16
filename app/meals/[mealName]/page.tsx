@@ -6,6 +6,14 @@ type Params = { mealName: string };
 
 type MealParams = { params: Params };
 
+export async function generateMetadata({ params }: MealParams) {
+  const meal = getMeal(params.mealName);
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function Meal({ params }: MealParams) {
   const meal = getMeal(params.mealName);
 

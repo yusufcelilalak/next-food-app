@@ -43,8 +43,8 @@ export default function Home() {
               culinary delights. Founded with the mission to connect people
               through the love of cooking, we offer a platform for sharing
               unique recipes, exchanging cooking tips, and inspiring each other
-              to try new dishes. Whether you're a seasoned chef or a home cook,
-              Quick Food is here to enhance your culinary journey.
+              to try new dishes. Whether you&apos;re a seasoned chef or a home
+              cook, Quick Food is here to enhance your culinary journey.
             </p>
           </div>
 
